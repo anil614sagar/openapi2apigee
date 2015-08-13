@@ -1,0 +1,33 @@
+{
+  "name": "swagger-apigee-node-utility",
+  "version": "0.1.0",
+  "description": "A tool that converts swagger yaml file to Apigee API Proxy Bundle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anil614sagar/swagger-apigee-node-utility.git"
+  },
+  "keywords": [
+    "Apigee",
+    "Swagger",
+    "Tool",
+    "Api",
+    "Proxy"
+  ],
+  "author": "Anil Sagar <anil614sagar@gmail.com> (https://in.linkedin.com/in/anilsagar/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anil614sagar/swagger-apigee-node-utility/issues"
+  },
+  "homepage": "https://github.com/anil614sagar/swagger-apigee-node-utility",
+  "dependencies": {
+    "async": "^1.4.2",
+    "commander": "^2.8.1",
+    "inquirer": "^0.9.0",
+    "swagger-parser": "^2.5.0",
+    "valid-url": "^1.0.9"
+  }
+}
