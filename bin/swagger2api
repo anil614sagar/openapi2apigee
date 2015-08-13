@@ -3,6 +3,7 @@
 var program = require('commander');
 var command = require('../lib/commands/generateApi/generateApi.js');
 
+
 program
   .version(require('../lib/util/cli').version());
 
@@ -14,7 +15,11 @@ program
   .action(function(apiProxy, options) {
         console.log('Generating Apigee API Bundle for ' + apiProxy + ' Api...');
         console.log('Source of Swagger Provided is : ' + options.location);
-        command.generateApi(apiProxy, options, function(err, reply) {});
+        command.generateApi(apiProxy, options, function(err, reply) {
+          if(err) {
+            console.log(err);
+          }
+        });
 });
 
 program.parse(process.argv);
