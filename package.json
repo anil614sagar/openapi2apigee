@@ -1,5 +1,5 @@
 {
-  "name": "swagger-apigee-node-utility",
+  "name": "swagger2api",
   "version": "0.1.0",
   "description": "A tool that converts swagger yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
@@ -30,6 +30,7 @@
     "commander": "^2.8.1",
     "easy-zip": "0.0.4",
     "inquirer": "^0.9.0",
+    "mkdirp": "^0.5.1",
     "swagger-parser": "^2.5.0",
     "xmlbuilder": "^2.6.4"
   }
