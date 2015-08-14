@@ -2,6 +2,7 @@
 
 var program = require('commander');
 var command = require('../lib/commands/generateApi/generateApi.js');
+var deploy = require('../lib/commands/deployApi/deployApi.js');
 
 
 program
@@ -11,6 +12,7 @@ program
   .command('generateApi <apiProxy>')
   .option('-l, --location <location>', 'Swagger File Location.')
   .option('-d, --destination <destination>', 'API Bundle destination location.')
+  .option('-D, --deploy', 'Deploy to Apigee Edge')
   .description('Generate Apigee API Bundle')
   .action(function(apiProxy, options) {
         console.log('Generating Apigee API Bundle for ' + apiProxy + ' Api...');
@@ -18,6 +20,12 @@ program
         command.generateApi(apiProxy, options, function(err, reply) {
           if(err) {
             console.log(err);
+          }
+          console.log('Zip File Generated...');
+          if (options.deploy) {
+            deploy.deployApi(apiProxy, options, function(err, reply) {
+
+            });
           }
         });
 });

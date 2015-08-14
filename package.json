@@ -24,10 +24,12 @@
   },
   "homepage": "https://github.com/anil614sagar/swagger-apigee-node-utility",
   "dependencies": {
+    "apigeetool": "^0.5.4",
     "archiver": "^0.14.4",
     "async": "^1.4.2",
     "commander": "^2.8.1",
     "easy-zip": "0.0.4",
+    "inquirer": "^0.9.0",
     "swagger-parser": "^2.5.0",
     "xmlbuilder": "^2.6.4"
   }
