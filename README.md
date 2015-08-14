@@ -12,6 +12,7 @@ The `swagger2api` module and its dependencies are designed for Node.js and is av
 ### From a Terminal Window:
 ```bash
 $ sudo npm install -g swagger2api
+```
 
 # <a name="reference"></a>Command reference and examples
 
