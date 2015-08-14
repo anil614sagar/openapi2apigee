@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "swagger2api": "bin/swagger2api"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/anil614sagar/swagger-apigee-node-utility.git"
