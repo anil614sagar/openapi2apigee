@@ -28,7 +28,12 @@ program
       }
       if (options.deploy) {
         deploy.deployApi(apiProxy, options, function(err, reply) {
-
+          if (err) {
+            console.log(err);
+          }
+          else {
+            console.log('Deployment to Apigee successfully completed.');
+          }
         });
       }
     });
