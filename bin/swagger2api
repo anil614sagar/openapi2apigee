@@ -4,10 +4,11 @@
 var program = require('commander');
 var command = require('../lib/commands/generateApi/generateApi.js');
 var deploy = require('../lib/commands/deployApi/deployApi.js');
+var version = require('../lib/util/cli').version();
 
 
 program
-  .version(require('../lib/util/cli').version());
+  .version(version);
 
 program
   .command('generateApi <apiProxy>')
@@ -16,19 +17,21 @@ program
   .option('-D, --deploy', 'Deploy to Apigee Edge')
   .description('Generate Apigee API Bundle')
   .action(function(apiProxy, options) {
-        console.log('Generating Apigee API Bundle for ' + apiProxy + ' Api...');
-        console.log('Source of Swagger Provided is : ' + options.location);
-        command.generateApi(apiProxy, options, function(err, reply) {
-          if(err) {
-            console.log(err);
-          }
-          console.log('Zip File Generated...');
-          if (options.deploy) {
-            deploy.deployApi(apiProxy, options, function(err, reply) {
+    command.generateApi(apiProxy, options, function(err, reply) {
+      if(err) {
+        console.log(err);
+      }
+      if (options.destination) {
+        console.log('Apigee API bundle generated in location ' + options.destination);
+      } else {
+        console.log('Apigee API bundle generated in current directory. ');
+      }
+      if (options.deploy) {
+        deploy.deployApi(apiProxy, options, function(err, reply) {
 
-            });
-          }
         });
-});
+      }
+    });
+  });
 
 program.parse(process.argv);
