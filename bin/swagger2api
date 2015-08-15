@@ -12,7 +12,7 @@ program
 
 program
   .command('generateApi <apiProxy>')
-  .option('-l, --location <location>', 'Swagger File Location.')
+  .option('-s, --source <source>', 'Swagger File Source.')
   .option('-d, --destination <destination>', 'API Bundle destination location.')
   .option('-D, --deploy', 'Deploy to Apigee Edge')
   .description('Generate Apigee API Bundle')
@@ -21,10 +21,13 @@ program
       if(err) {
         console.log(err);
       }
-      if (options.destination) {
-        console.log('Apigee API bundle generated in location ' + options.destination);
-      } else {
-        console.log('Apigee API bundle generated in current directory. ');
+      else {
+        if (options.destination) {
+          console.log('Apigee API bundle generated in location ' + options.destination);
+        }
+        else {
+          console.log('Apigee API bundle generated in current directory. ');
+        }
       }
       if (options.deploy) {
         deploy.deployApi(apiProxy, options, function(err, reply) {

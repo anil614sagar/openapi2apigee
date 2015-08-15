@@ -25,4 +25,4 @@ Generates Apigee API Bundles from Swagger files and help you deploy to Apigee Ed
 #### Examples
 
 ```bash
-$ swagger2api generateApi petStore -l http://petstore.swagger.io/v2/swagger.json -D -d /Users/Anil/Desktop/
+$ swagger2api generateApi petStore -s http://petstore.swagger.io/v2/swagger.json -D -d /Users/Anil/Desktop/
