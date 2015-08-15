@@ -7,16 +7,20 @@ var deploy = require('../lib/commands/deployApi/deployApi.js');
 var version = require('../lib/util/cli').version();
 
 
+var executed = false;
+
 program
   .version(version);
 
 program
+  .usage('<command> <options>')
   .command('generateApi <apiProxy>')
   .option('-s, --source <source>', 'Swagger File Source.')
   .option('-d, --destination <destination>', 'API Bundle destination location.')
   .option('-D, --deploy', 'Deploy to Apigee Edge')
-  .description('Generate Apigee API Bundle')
+  .description('Generates Apigee API Bundle')
   .action(function(apiProxy, options) {
+    executed = true;
     command.generateApi(apiProxy, options, function(err, reply) {
       if(err) {
         console.log(err);
@@ -42,4 +46,16 @@ program
     });
   });
 
+program.on('--help', function(){
+  console.log('  Examples:');
+  console.log('');
+  console.log('    $ swagger2api generateApi --help');
+  console.log('    $ swagger2api generateApi -s http://petstore.swagger.io/v2/swagger.json -d /Users/Anil/Desktop/ -D petStore');
+  console.log('');
+});
+
 program.parse(process.argv);
+
+if (!process.argv.slice(2).length || !executed) {
+  program.outputHelp();
+}
