@@ -4,7 +4,8 @@
   "description": "A tool that converts swagger yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test",
+    "coverage" : "istanbul cover _mocha -- test/util test/commands -R spec"
   },
   "bin": {
     "swagger2api": "bin/swagger2api"
@@ -34,7 +35,11 @@
     "easy-zip": "0.0.4",
     "inquirer": "^0.9.0",
     "mkdirp": "^0.5.1",
+    "mocha": "^2.2.5",
     "swagger-parser": "^2.5.0",
     "xmlbuilder": "^2.6.4"
+  },
+  "devDependencies": {
+    "should": "^7.0.4"
   }
 }
