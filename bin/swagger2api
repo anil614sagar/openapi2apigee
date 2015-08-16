@@ -32,16 +32,16 @@ program
         else {
           console.log('Apigee API bundle generated in current directory. ');
         }
-      }
-      if (options.deploy) {
-        deploy.deployApi(apiProxy, options, function(err, reply) {
-          if (err) {
-            console.log(err);
-          }
-          else {
-            console.log('Deployment to Apigee successfully completed.');
-          }
-        });
+        if (options.deploy) {
+          deploy.deployApi(apiProxy, options, function (err, reply) {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              console.log('Deployment to Apigee successfully completed.');
+            }
+          });
+        }
       }
     });
   });
