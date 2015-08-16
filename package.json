@@ -1,11 +1,11 @@
 {
   "name": "swagger2api",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A tool that converts swagger yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
   "scripts": {
     "test": "make test",
-    "coverage" : "istanbul cover _mocha -- test/util test/commands -R spec"
+    "coverage": "istanbul cover _mocha -- test/util test/commands -R spec"
   },
   "bin": {
     "swagger2api": "bin/swagger2api"
