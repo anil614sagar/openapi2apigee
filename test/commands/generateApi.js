@@ -55,10 +55,12 @@ describe('generateApi', function() {
         should.equal(err, null);
         var rootFolder = fs.lstatSync(path.join(options.destination, options.apiProxy));
         var proxiesFolder = fs.lstatSync(path.join(options.destination, options.apiProxy + "/apiproxy/proxies"));
-        var targetsFolder = fs.lstatSync(path.join(options.destination, options.apiProxy + "/apiproxy/proxies"));
+        var targetsFolder = fs.lstatSync(path.join(options.destination, options.apiProxy + "/apiproxy/targets"));
+        var policiesFolder = fs.lstatSync(path.join(options.destination, options.apiProxy + "/apiproxy/policies"));
         should.equal(rootFolder.isDirectory(), true);
         should.equal(proxiesFolder.isDirectory(), true);
         should.equal(targetsFolder.isDirectory(), true);
+        should.equal(policiesFolder.isDirectory(), true);
         done();
       });
     });
