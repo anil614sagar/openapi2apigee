@@ -3,6 +3,8 @@
 var should = require('should');
 var path = require('path');
 var generateApi = require('../../lib/commands/generateApi/generateApi');
+var generateSkeleton = require('../../lib/commands/generateApi/generateSkeleton.js')
+var fs = require('fs');
 
 
 describe('generateApi', function() {
@@ -43,8 +45,39 @@ describe('generateApi', function() {
   });
 
   describe('generateSkeleton', function() {
-    it('....', function() {
-
+    it('generate Skeleton should create folder structure', function(done) {
+      var options = {
+        source : path.join(__dirname, '/swagger_files/goodswagger.yaml'),
+        destination : path.join(__dirname, '../../api_bundles'),
+        apiProxy : randomText()
+      }
+      generateSkeleton(options.apiProxy, options, function(err, reply) {
+        should.equal(err, null);
+        var rootFolder = fs.lstatSync(path.join(options.destination, options.apiProxy));
+        var proxiesFolder = fs.lstatSync(path.join(options.destination, options.apiProxy + "/apiproxy/proxies"));
+        var targetsFolder = fs.lstatSync(path.join(options.destination, options.apiProxy + "/apiproxy/proxies"));
+        should.equal(rootFolder.isDirectory(), true);
+        should.equal(proxiesFolder.isDirectory(), true);
+        should.equal(targetsFolder.isDirectory(), true);
+        done();
+      });
+    });
+    it('destination path ending with / should generate Skeleton Folder', function(done) {
+      var options = {
+        source : path.join(__dirname, '/swagger_files/goodswagger.yaml'),
+        destination : path.join(__dirname, '../../api_bundles/'),
+        apiProxy : randomText()
+      }
+      generateSkeleton(options.apiProxy, options, function(err, reply) {
+        should.equal(err, null);
+        var rootFolder = fs.lstatSync(path.join(options.destination, options.apiProxy));
+        var proxiesFolder = fs.lstatSync(path.join(options.destination, options.apiProxy + "/apiproxy/proxies"));
+        var targetsFolder = fs.lstatSync(path.join(options.destination, options.apiProxy + "/apiproxy/proxies"));
+        should.equal(rootFolder.isDirectory(), true);
+        should.equal(proxiesFolder.isDirectory(), true);
+        should.equal(targetsFolder.isDirectory(), true);
+        done();
+      });
     });
   });
 
@@ -55,3 +88,12 @@ describe('generateApi', function() {
   });
 
 });
+
+function randomText() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  for( var i=0; i < 10; i++ ) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
