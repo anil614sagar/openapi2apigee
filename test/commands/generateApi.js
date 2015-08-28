@@ -11,7 +11,7 @@ describe('generateApi', function() {
   describe('generate', function() {
     it('Incorrect swagger file should generate error..', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/badswagger.yaml'),
+        source : path.join(__dirname, '/swagger_files/swagger2.yaml'),
         destination : path.join(__dirname, '../../api_bundles'),
       }
       generateApi.generateApi('petStore', options, function(err, reply) {
@@ -22,7 +22,7 @@ describe('generateApi', function() {
     });
     it('Correct swagger file should not generate error..', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/goodswagger.yaml'),
+        source : path.join(__dirname, '/swagger_files/swagger1.yaml'),
         destination : path.join(__dirname, '../../api_bundles'),
       }
       generateApi.generateApi('petStore', options, function(err, reply) {
@@ -47,7 +47,7 @@ describe('generateApi', function() {
   describe('generateSkeleton', function() {
     it('generate Skeleton should create folder structure', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/goodswagger.yaml'),
+        source : path.join(__dirname, '/swagger_files/swagger1.yaml'),
         destination : path.join(__dirname, '../../api_bundles'),
         apiProxy : randomText()
       }
@@ -64,7 +64,7 @@ describe('generateApi', function() {
     });
     it('destination path ending with / should generate Skeleton Folder', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/goodswagger.yaml'),
+        source : path.join(__dirname, '/swagger_files/swagger1.yaml'),
         destination : path.join(__dirname, '../../api_bundles/'),
         apiProxy : randomText()
       }
