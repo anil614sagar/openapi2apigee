@@ -12,9 +12,18 @@ consumes:
   - application/json
 produces:
   - application/json
+x-a127-services:
+  quotaAnil:
+    provider: volos-quota-memory
+    options:
+      timeUnit: day
+      interval: 2
+      allow: 2500
 paths:
   /pets:
     get:
+      x-a127-apply:
+        quotaAnil: {}
       summary: List all pets
       operationId: listPets
       tags:
