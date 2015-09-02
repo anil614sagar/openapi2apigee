@@ -25,6 +25,11 @@ x-a127-services:
       timeUnit: "minute"
       bufferSize: 10
       allow: 10
+  cache:
+      provider: volos-cache-memory
+      options:
+        name: hello-cache
+        ttl: 60000
 paths:
   /pets:
     get:
