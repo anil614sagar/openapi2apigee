@@ -30,6 +30,11 @@ x-a127-services:
       options:
         name: hello-cache
         ttl: 60000
+  apiKeyHeader:
+      provider: volos-oauth-apigee
+      options:
+        key: sss
+        uri: ssss
 paths:
   /pets:
     get:
@@ -80,6 +85,8 @@ paths:
     get:
       summary: Info for a specific pet
       operationId: showPetById
+      security:
+        - apiKeyHeader: []
       tags:
         - pets
       parameters:
