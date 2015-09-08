@@ -32,6 +32,12 @@ describe('generateApi', function() {
     });
   });
 
+  describe('generatePolicies', function() {
+    it('....', function() {
+
+    });
+  });
+
   describe('generateProxy', function() {
     it('....', function() {
 

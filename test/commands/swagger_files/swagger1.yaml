@@ -61,6 +61,9 @@ paths:
         spikearrest:
           pipe: request
           endPoint: proxy
+        cache:
+          pipe: request,response
+          endPoint: proxy
       summary: List all pets
       operationId: listPets
       tags:
