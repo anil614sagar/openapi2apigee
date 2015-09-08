@@ -26,3 +26,14 @@ Generates Apigee API Bundles from Swagger files and help you deploy to Apigee Ed
 
 ```bash
 $ swagger2api generateApi petStore -s http://petstore.swagger.io/v2/swagger.json -D -d /Users/Anil/Desktop/
+```
+
+#### Articles
+
+<a href="https://community.apigee.com/articles/8796/swagger2api-a-nodejs-command-line-tool-to-generate.html">Getting Started with Swagger2API</a>
+
+<a href="https://community.apigee.com/articles/9478/swagger2api-020-version-generating-apigee-policies.html">Swagger2API Apigee-127 Extensions support</a>
+
+<a href="https://community.apigee.com/articles/9741/swagger2api-021-version-securing-apis-using-swagge.html"> Secure APIs using OAuth2.0 & Verify API Key Policies in Apigee using Swagger 2.0</a>
+
+
