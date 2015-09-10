@@ -1,6 +1,6 @@
 {
   "name": "swagger2api",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A tool that converts swagger yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
   "scripts": {
