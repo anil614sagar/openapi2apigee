@@ -18,6 +18,13 @@ program
   .option('-s, --source <source>', 'Swagger File Source.')
   .option('-d, --destination <destination>', 'API Bundle destination location.')
   .option('-D, --deploy', 'Deploy to Apigee Edge')
+  .option('-b, --baseuri <baseuri>', 'Apigee Edge EndPoint to Deploy')
+  .option('-o, --organization <organization>', 'Apigee Edge Organization to Deploy')
+  .option('-e, --environment <environment>', 'Apigee Edge Environment to Deploy')
+  .option('-v, --virtualhosts <virtualhosts>', 'Apigee Edge virtual hosts to Deploy')
+  .option('-u, --username <username>', 'Apigee Edge Username to Deploy')
+  .option('-p, --password <password>', 'Apigee Edge Password to Deploy')
+
   .description('Generates Apigee API Bundle')
   .action(function(apiProxy, options) {
     executed = true;
