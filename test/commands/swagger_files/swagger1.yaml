@@ -19,22 +19,6 @@ x-a127-services:
       timeUnit: day
       interval: 2
       allow: 2500
-  spikearrest:
-    provider: "volos-spikearrest-memory"
-    options:
-      timeUnit: "minute"
-      bufferSize: 10
-      allow: 10
-  cache:
-    provider: volos-cache-memory
-    options:
-      name: hello-cache
-      ttl: 60000
-  apiKeyHeader:
-    provider: volos-oauth-apigee
-    options:
-      key: sss
-      uri: ssss
   oauth2:
     provider: volos-oauth-apigee
     options:
@@ -57,12 +41,6 @@ paths:
       x-a127-apply:
         quotaAnil:
           pipe: request
-          endPoint: proxy
-        spikearrest:
-          pipe: request
-          endPoint: proxy
-        cache:
-          pipe: request,response
           endPoint: proxy
       summary: List all pets
       operationId: listPets
