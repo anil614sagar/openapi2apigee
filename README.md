@@ -36,4 +36,8 @@ $ swagger2api generateApi petStore -s http://petstore.swagger.io/v2/swagger.json
 
 <a href="https://community.apigee.com/articles/9741/swagger2api-021-version-securing-apis-using-swagge.html"> Secure APIs using OAuth2.0 & Verify API Key Policies in Apigee using Swagger 2.0</a>
 
+#### Docker Image
+
+<a href="https://hub.docker.com/r/murf/apigee-swagger2api/">Docker Image</a> By Mikael Mellgren
+
 
