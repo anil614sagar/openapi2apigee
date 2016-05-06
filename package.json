@@ -1,5 +1,5 @@
 {
-  "name": "swagger2api",
+  "name": "swagger2api-cors",
   "version": "0.2.3",
   "description": "A tool that converts swagger yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
