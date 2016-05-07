@@ -35,11 +35,11 @@
     "easy-zip": "0.0.4",
     "inquirer": "^0.9.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^2.2.5",
     "swagger-parser": "^2.5.0",
     "xmlbuilder": "^2.6.4"
   },
   "devDependencies": {
+    "mocha": "^2.2.5",
     "should": "^7.0.4"
   }
 }
