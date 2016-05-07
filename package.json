@@ -40,6 +40,8 @@
   },
   "devDependencies": {
     "mocha": "^2.2.5",
-    "should": "^7.0.4"
+    "rimraf": "2.5.2",
+    "should": "^7.0.4",
+    "xml2js": "0.4.16"
   }
 }
