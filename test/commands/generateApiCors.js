@@ -14,7 +14,7 @@ describe('generateApi with CORS proxy', function() {
     destination : path.join(__dirname, '../../api_bundles'),
     apiProxy :'petStoreCors'
   };
-  var bundle = path.join(options.destination, options.apiProxy);
+  var bundle = path.join(options.destination);
   // Remove generated bundles.
   rimraf.sync(bundle);
 
@@ -32,13 +32,8 @@ describe('generateApi with CORS proxy', function() {
     });
   });
 
-  describe('generatePolicies', function() {
+  describe('Add cors policy', function() {
     it('Cors policy should be generated', function(done) {
-      var options = {
-        source : path.join(__dirname, '/swagger_files/cors.yaml'),
-        destination : path.join(__dirname, '../../api_bundles'),
-        apiProxy :'petStoreCors'
-      }
       var corsFilePath = path.join(options.destination, options.apiProxy + "/apiproxy/policies/add-cors.xml");
       var corsFile = fs.lstatSync(corsFilePath);
       should.equal(corsFile.isFile(), true);
@@ -53,8 +48,18 @@ describe('generateApi with CORS proxy', function() {
         headers.Header.should.be.an.instanceOf(Array).and.have.lengthOf(5);
         done();
       });
-
     });
+    it('Proxy should contain add-cors policy', function(done) {
+      var proxyFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/', options.apiProxy + '.xml');
+      var proxyFileData = fs.readFileSync(proxyFilePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(proxyFileData, function (err, result) {
+        result.should.have.property('APIProxy');
+        result.should.have.property('APIProxy').property('Policies');
+        done();
+      });
+    });
+
   });
 
   // describe('generateProxy', function() {
