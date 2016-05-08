@@ -44,8 +44,9 @@ describe('generateApi with CORS proxy', function() {
         result.should.have.property('AssignMessage');
         result.should.have.property('AssignMessage').property('Add');
         var headers = result.AssignMessage.Add[0].Headers[0];
-        headers.should.be.an.Object;
-        headers.Header.should.be.an.instanceOf(Array).and.have.lengthOf(5);
+        // Check Header name and value
+        should.equal(headers.Header[0].$.name, 'Access-Control-Allow-Origin', 'Access-Control-Allow-Origin not found: ');
+        should.equal(headers.Header[0]._, '*', 'Access-Control-Allow-Origin not correct');
         done();
       });
     });
