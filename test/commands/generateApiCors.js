@@ -60,25 +60,18 @@ describe('generateApi with CORS proxy', function() {
         done();
       });
     });
+    it('Proxies should contain add-cors step in PreFlow', function(done) {
+      var proxiesFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+      var proxiesFileData = fs.readFileSync(proxiesFilePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(proxiesFileData, function (err, result) {
+        result.should.have.property('ProxyEndpoint');
+        result.should.have.property('ProxyEndpoint').property('PreFlow');
+        var preFlow = result.ProxyEndpoint.PreFlow[0].Response[0].Step[0].Name[0];
+        should.equal(preFlow, 'add-cors', 'add-cors step in found in PreFlow');
+        done();
+      });
+    });
 
   });
-
-  // describe('generateProxy', function() {
-  //   it('....', function() {
-  //
-  //   });
-  // });
-  //
-  // describe('generateProxyEndPoint', function() {
-  //   it('....', function() {
-  //
-  //   });
-  // });
-  //
-  // describe('generateTargetEndPoint', function() {
-  //   it('....', function() {
-  //
-  //   });
-  // });
-
 });
