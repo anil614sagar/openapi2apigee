@@ -57,6 +57,7 @@ describe('generateApi with CORS proxy', function() {
       parser.parseString(proxyFileData, function (err, result) {
         result.should.have.property('APIProxy');
         result.should.have.property('APIProxy').property('Policies');
+        should.equal(result.APIProxy.Policies[0].Policy[0],'add-cors');
         done();
       });
     });
@@ -67,8 +68,7 @@ describe('generateApi with CORS proxy', function() {
       parser.parseString(proxiesFileData, function (err, result) {
         result.should.have.property('ProxyEndpoint');
         result.should.have.property('ProxyEndpoint').property('PreFlow');
-        var preFlow = result.ProxyEndpoint.PreFlow[0].Response[0].Step[0].Name[0];
-        should.equal(preFlow, 'add-cors', 'add-cors step in found in PreFlow');
+        should.equal(result.ProxyEndpoint.PreFlow[0].Response[0].Step[0].Name[0], 'add-cors', 'add-cors step in found in PreFlow');
         done();
       });
     });
