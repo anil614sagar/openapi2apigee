@@ -50,17 +50,6 @@ describe('generateApi with CORS proxy', function() {
         done();
       });
     });
-    it('Proxy should contain add-cors policy', function(done) {
-      var proxyFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/', options.apiProxy + '.xml');
-      var proxyFileData = fs.readFileSync(proxyFilePath);
-      var parser = new xml2js.Parser();
-      parser.parseString(proxyFileData, function (err, result) {
-        result.should.have.property('APIProxy');
-        result.should.have.property('APIProxy').property('Policies');
-        should.equal(result.APIProxy.Policies[0].Policy[0],'add-cors');
-        done();
-      });
-    });
     it('Proxies should contain add-cors step in PreFlow', function(done) {
       var proxiesFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
       var proxiesFileData = fs.readFileSync(proxiesFilePath);
