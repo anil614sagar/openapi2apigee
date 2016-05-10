@@ -18,13 +18,8 @@ describe('generateApi with CORS proxy', function() {
   // Remove generated bundles.
   rimraf.sync(bundle);
 
-  describe('generate', function() {
+  describe('generate', function(done) {
     it('Correct swagger file should generate proxy', function(done) {
-      var options = {
-        source : path.join(__dirname, '/swagger_files/cors.yaml'),
-        destination : path.join(__dirname, '../../api_bundles'),
-        apiProxy :'petStoreCors'
-      }
       generateApi.generateApi(options.apiProxy, options, function(err, reply) {
         should.equal(err, null);
         done();
@@ -59,6 +54,58 @@ describe('generateApi with CORS proxy', function() {
         result.should.have.property('ProxyEndpoint').property('PreFlow');
         should.equal(result.ProxyEndpoint.PreFlow[0].Response[0].Step[0].Name[0], 'add-cors', 'add-cors step in found in PreFlow');
         done();
+      });
+    });
+    describe('virtualhosts option', function(done) {
+      it("missing -v flag should generate both default and secure", function(done) {
+        options.apiProxy = 'petStoreVirtualBoth';
+        generateApi.generateApi(options.apiProxy, options, function(err, reply) {
+          should.equal(err, null);
+          var proxiesFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+          var proxiesFileData = fs.readFileSync(proxiesFilePath);
+          var parser = new xml2js.Parser();
+          parser.parseString(proxiesFileData, function (err, result) {
+            result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
+            var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
+            console.log(vhost);
+            vhost.should.eql(['default','secure'], 'secure virtual host found');
+            done();
+          });
+        })
+      });
+      it("-v 'secure' should generate secure virtual host", function(done) {
+        options.apiProxy = 'petStoreVirtualVirtual';
+        options.virtualhosts = 'secure';
+        generateApi.generateApi(options.apiProxy, options, function(err, reply) {
+          should.equal(err, null);
+          var proxiesFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+          var proxiesFileData = fs.readFileSync(proxiesFilePath);
+          var parser = new xml2js.Parser();
+          parser.parseString(proxiesFileData, function (err, result) {
+            result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
+            var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
+            console.log(vhost);
+            vhost.should.eql(['secure'], 'secure virtual host found');
+            done();
+          });
+        })
+      });
+      it("-v 'default' should generate default virtual host", function(done) {
+        options.apiProxy = 'petStoreVirtualDefault';
+        options.virtualhosts = 'default';
+        generateApi.generateApi(options.apiProxy, options, function(err, reply) {
+          should.equal(err, null);
+          var proxiesFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+          var proxiesFileData = fs.readFileSync(proxiesFilePath);
+          var parser = new xml2js.Parser();
+          parser.parseString(proxiesFileData, function (err, result) {
+            result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
+            var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
+            console.log(vhost);
+            vhost.should.eql(['default'], 'secure virtual host found');
+            done();
+          });
+        })
       });
     });
 
