@@ -10,7 +10,7 @@ var xml2js = require('xml2js');
 
 describe('generateApi with CORS proxy', function() {
   var options = {
-    source : path.join(__dirname, '/swagger_files/cors.yaml'),
+    source : path.join(__dirname, '/openapi_files/cors.yaml'),
     destination : path.join(__dirname, '../../api_bundles'),
     apiProxy :'petStoreCors'
   };
@@ -19,9 +19,9 @@ describe('generateApi with CORS proxy', function() {
   rimraf.sync(bundle);
 
   describe('generate', function() {
-    it('Correct swagger file should generate proxy', function(done) {
+    it('Correct openapi file should generate proxy', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/cors.yaml'),
+        source : path.join(__dirname, '/openapi_files/cors.yaml'),
         destination : path.join(__dirname, '../../api_bundles'),
         apiProxy :'petStoreCors'
       }

@@ -1,22 +1,22 @@
 {
-  "name": "swagger2api",
+  "name": "openapi2apigee",
   "version": "0.3.0",
-  "description": "A tool that converts swagger yaml file to Apigee API Proxy Bundle",
+  "description": "A tool that converts openapi yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
   "scripts": {
     "test": "make test",
     "coverage": "istanbul cover _mocha -- test/util test/commands -R spec"
   },
   "bin": {
-    "swagger2api": "bin/swagger2api"
+    "openapi2apigee": "bin/openapi2apigee"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/anil614sagar/swagger-apigee-node-utility.git"
+    "url": "https://github.com/anil614sagar/openapi-apigee-node-utility.git"
   },
   "keywords": [
     "Apigee",
-    "Swagger",
+    "openapi",
     "Tool",
     "Api",
     "Proxy"
@@ -24,9 +24,9 @@
   "author": "Anil Sagar <anil614sagar@gmail.com> (https://in.linkedin.com/in/anilsagar/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anil614sagar/swagger-apigee-node-utility/issues"
+    "url": "https://github.com/anil614sagar/openapi-apigee-node-utility/issues"
   },
-  "homepage": "https://github.com/anil614sagar/swagger-apigee-node-utility",
+  "homepage": "https://github.com/anil614sagar/openapi-apigee-node-utility",
   "dependencies": {
     "apigeetool": "^0.5.4",
     "archiver": "^0.14.4",
@@ -35,7 +35,7 @@
     "easy-zip": "0.0.4",
     "inquirer": "^0.9.0",
     "mkdirp": "^0.5.1",
-    "swagger-parser": "^2.5.0",
+    "openapi-parser": "^2.5.0",
     "xmlbuilder": "^2.6.4"
   },
   "devDependencies": {
