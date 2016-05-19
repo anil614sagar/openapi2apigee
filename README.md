@@ -7,7 +7,7 @@ You can install `openapi2apigee` either through npm or by cloning and linking th
 
 ## Installation from npm
 
-The `openapi2apigee` module and its dependencies are designed for Node.js and is available through npm using the following command:
+The `openapi2apigee` module (and its dependencies) is designed for Node.js and is available through npm using the following command:
 
 ### From a Terminal Window:
 ```bash
@@ -34,7 +34,7 @@ $ openapi2apigee generateApi petStore -s http://petstore.openapi.io/v2/openapi.j
 
 <a href="https://community.apigee.com/articles/9478/openapi2apigee-020-version-generating-apigee-policies.html">openapi2apigee Apigee-127 Extensions support</a>
 
-<a href="https://community.apigee.com/articles/9741/openapi2apigee-021-version-securing-apis-using-swagge.html"> Secure APIs using OAuth 2.0 & Verify API Key Policies in Apigee using OpenAPI 2.0</a>
+<a href="https://community.apigee.com/articles/9741/openapi2apigee-021-version-securing-apis-using-oas.html"> Secure APIs using OAuth 2.0 & Verify API Key Policies in Apigee using OpenAPI 2.0</a>
 
 #### Docker Image
 
