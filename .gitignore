@@ -4,4 +4,3 @@ api_bundles
 coverage
 .DS_Store
 .idea
-cors.sh

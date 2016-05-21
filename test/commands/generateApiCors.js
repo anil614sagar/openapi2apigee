@@ -56,6 +56,20 @@ describe('generateApi with CORS proxy', function() {
         done();
       });
     });
+
+    it('Target should not contain header step in PreFlow', function(done) {
+      var filePath = path.join(options.destination, options.apiProxy, '/apiproxy/targets/default.xml');
+      var fileData = fs.readFileSync(filePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(fileData, function (err, result) {
+        result.should.have.property('TargetEndpoint');
+        result.should.have.property('TargetEndpoint').property('PreFlow');
+        should.exist(result.TargetEndpoint.PreFlow[0].Request[0], 'Request found in PreFlow');
+        should.equal(result.TargetEndpoint.PreFlow[0].Request[0].length, 0, 'Request step not found in PreFlow');
+        done();
+      });
+    });
+
     describe('virtualhosts option', function(done) {
       it("missing -v flag should generate both default and secure", function(done) {
         options.apiProxy = 'petStoreVirtualBoth';
@@ -67,7 +81,6 @@ describe('generateApi with CORS proxy', function() {
           parser.parseString(proxiesFileData, function (err, result) {
             result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
             var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
-            console.log(vhost);
             vhost.should.eql(['default','secure'], 'secure virtual host found');
             done();
           });
@@ -84,7 +97,6 @@ describe('generateApi with CORS proxy', function() {
           parser.parseString(proxiesFileData, function (err, result) {
             result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
             var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
-            console.log(vhost);
             vhost.should.eql(['secure'], 'secure virtual host found');
             done();
           });
@@ -101,7 +113,6 @@ describe('generateApi with CORS proxy', function() {
           parser.parseString(proxiesFileData, function (err, result) {
             result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
             var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
-            console.log(vhost);
             vhost.should.eql(['default'], 'secure virtual host found');
             done();
           });
