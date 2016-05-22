@@ -5,7 +5,6 @@ var path = require('path');
 var generateApi = require('../../lib/commands/generateApi/generateApi');
 var generateSkeleton = require('../../lib/commands/generateApi/generateSkeleton.js')
 var fs = require('fs');
-var rimraf = require('rimraf');
 var xml2js = require('xml2js');
 
 describe('generateApi with headers', function() {
@@ -14,9 +13,6 @@ describe('generateApi with headers', function() {
     destination : path.join(__dirname, '../../api_bundles'),
     apiProxy :'petStoreHeaders'
   };
-  var bundle = path.join(options.destination);
-  // Remove generated bundles.
-  rimraf.sync(bundle);
 
   describe('generate', function(done) {
     it('Correct swagger file should generate proxy', function(done) {
