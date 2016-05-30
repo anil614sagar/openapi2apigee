@@ -5,7 +5,7 @@
     name: .*
   - element: XMLPayload
     name: null
-  rule: (?i:[ /+\t\"\'`]style[ /+\t]*?=.*([:=]|(&#x?0*((58)|(3A)|(61)|(3D));?)).*?([(\\\\]|(&#x?0*((40)|(28)|(92)|(5C));?)))
+  rule: !!js/regexp /(i:[ /+\t\"\'`]style[ /+\t]*?=.*([:=]|(&#x?0*((58)|(3A)|(61)|(3D));?)).*?([(\\\\]|(&#x?0*((40)|(28)|(92)|(5C));?)))/
 - elements:
   - element: Header
     name: Cookie
@@ -13,7 +13,7 @@
     name: .*
   - element: XMLPayload
     name: null
-  rule: (?i:[ /+\t\"\'`]on\[a-z]\[a-z]\[a-z]+?[ +\t]*?=.)
+  rule: !!js/regexp /(i:[ /+\t\"\'`]on\[a-z]\[a-z]\[a-z]+?[ +\t]*?=.)/
 - elements:
   - element: Header
     name: Cookie
@@ -21,4 +21,16 @@
     name: .*
   - element: XMLPayload
     name: null
-  rule: (?i:[ /+\t\"\'`]datasrc[ +\t]*?=.)
+  rule: !!js/regexp /(i:[ /+\t\"\'`]datasrc[ +\t]*?=.)/
+- elements:
+  - element: QueryParam
+    name: .*
+  rule: !!js/regexp /[\s]*((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))/
+- elements:
+  - element: QueryParam
+    name: .*
+  rule: !!js/regexp /[\s]*(hack)/
+- elements:
+  - element: QueryParam
+    name: .*
+  rule: !!js/regexp /(?:create\s+function\s+\w+\s+returns)|(?:;\s*?(?:select|create|rename|truncate|load|alter|delete|update|insert|desc)\s*?[\[(]?\w{2,})/i

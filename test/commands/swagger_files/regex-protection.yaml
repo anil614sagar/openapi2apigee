@@ -19,7 +19,18 @@ x-a127-services:
       pipe: request
       endPoint: proxy
     options:
-      displayName: Add Reqex Protection
+      displayName: Add Regex Protection
+      continueOnError: 'true'
+  raiseFault:
+    provider: x-raiseFault
+    apply:
+      pipe: request
+      endPoint: proxy
+    options:
+      displayName: Raise Regex Error
+      statusCode: 400
+      reasonPhrase: Bad Request
+      continueOnError: 'false'
   add-headers-x-api-key:
     provider: x-headers
     apply:
