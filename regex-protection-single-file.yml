@@ -1,0 +1,9 @@
+- elements:
+  - element: Header
+    name: Cookie
+  - element: QueryParam
+    name: q
+  rules:
+    - rule: (?i:[ /+\t\"\'`]on\[a-z]\[a-z]\[a-z]+?[ +\t]*?=.)
+    - rule: '[\s]*((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))'
+    - rule: (?i:[ /+\t\"\'`]on\[a-z]\[a-z]\[a-z]+?[ +\t]*?=.)
