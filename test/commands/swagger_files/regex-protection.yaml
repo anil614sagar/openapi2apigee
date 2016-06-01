@@ -19,7 +19,7 @@ x-a127-services:
       pipe: request
       endPoint: proxy
     options:
-      displayName: Add Reqex Protection
+      displayName: Add Regex Protection
   add-headers-x-api-key:
     provider: x-headers
     apply:
