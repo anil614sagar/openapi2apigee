@@ -67,7 +67,7 @@ describe('generateApi with regex-protection', function() {
       parser.parseString(fileData, function (err, result) {
         result.should.have.property('ProxyEndpoint');
         result.should.have.property('ProxyEndpoint').property('PreFlow');
-        should.equal(result.ProxyEndpoint.PreFlow[0].Request[0].Step[0].Name[0], 'Add Reqex Protection', 'Add Reqex Protection step in found in PreFlow');
+        should.equal(result.ProxyEndpoint.PreFlow[0].Request[0].Step[0].Name[0], 'Add Regex Protection', 'Add Reqex Protection step in found in PreFlow');
         done();
       });
     });
