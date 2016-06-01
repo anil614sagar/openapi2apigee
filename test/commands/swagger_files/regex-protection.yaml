@@ -20,6 +20,13 @@ x-a127-services:
       endPoint: proxy
     options:
       displayName: Add Regex Protection
+  raiseFault:
+    provider: x-regex-protection
+    apply:
+      pipe: request
+      endPoint: proxy
+    options:
+      displayName: Raise Regex Error
   add-headers-x-api-key:
     provider: x-headers
     apply:
