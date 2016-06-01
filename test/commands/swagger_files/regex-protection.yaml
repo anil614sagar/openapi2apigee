@@ -20,13 +20,17 @@ x-a127-services:
       endPoint: proxy
     options:
       displayName: Add Regex Protection
+      continueOnError: 'true'
   raiseFault:
-    provider: x-regex-protection
+    provider: x-raiseFault
     apply:
       pipe: request
       endPoint: proxy
     options:
       displayName: Raise Regex Error
+      statusCode: 501
+      reasonPhrase: Bad Request
+      continueOnError: 'false'
   add-headers-x-api-key:
     provider: x-headers
     apply:
