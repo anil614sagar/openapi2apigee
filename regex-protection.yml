@@ -26,3 +26,11 @@
   - element: QueryParam
     name: .*
   rule: !!js/regexp /[\s]*((delete)|(exec)|(drop\s*table)|(insert)|(shutdown)|(update)|(\bor\b))/
+- elements:
+  - element: QueryParam
+    name: .*
+  rule: !!js/regexp /[\s]*(hack)/
+- elements:
+  - element: QueryParam
+    name: .*
+  rule: !!js/regexp /(?:create\s+function\s+\w+\s+returns)|(?:;\s*?(?:select|create|rename|truncate|load|alter|delete|update|insert|desc)\s*?[\[(]?\w{2,})/i
