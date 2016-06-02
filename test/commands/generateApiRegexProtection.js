@@ -65,7 +65,7 @@ describe('generateApi with regex-protection', function() {
         // Check Header name and value
         console.log('RaiseFault.FaultResponse[0]', result.RaiseFault.FaultResponse[0].Set[0].ReasonPhrase[0]);
         should.equal(result.RaiseFault.FaultResponse[0].Set[0].ReasonPhrase[0], 'Bad Request', 'ReasonPhrase not found');
-        should.equal(result.RaiseFault.FaultResponse[0].Set[0].StatusCode[0], '501', '501 not found');
+        should.equal(result.RaiseFault.FaultResponse[0].Set[0].StatusCode[0], '400', '400 not found');
         done();
       });
     });

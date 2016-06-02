@@ -28,7 +28,7 @@ x-a127-services:
       endPoint: proxy
     options:
       displayName: Raise Regex Error
-      statusCode: 501
+      statusCode: 400
       reasonPhrase: Bad Request
       continueOnError: 'false'
   add-headers-x-api-key:
