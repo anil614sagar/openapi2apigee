@@ -5,7 +5,6 @@ var path = require('path');
 var generateApi = require('../../lib/commands/generateApi/generateApi');
 var generateSkeleton = require('../../lib/commands/generateApi/generateSkeleton.js')
 var fs = require('fs');
-var rimraf = require('rimraf');
 var xml2js = require('xml2js');
 
 describe('generateApi with CORS proxy', function() {
@@ -14,9 +13,6 @@ describe('generateApi with CORS proxy', function() {
     destination : path.join(__dirname, '../../api_bundles'),
     apiProxy :'petStoreCors'
   };
-  var bundle = path.join(options.destination);
-  // Remove generated bundles.
-  rimraf.sync(bundle);
 
   describe('generate', function(done) {
     it('Correct swagger file should generate proxy', function(done) {
@@ -56,6 +52,20 @@ describe('generateApi with CORS proxy', function() {
         done();
       });
     });
+
+    it('Target should not contain header step in PreFlow', function(done) {
+      var filePath = path.join(options.destination, options.apiProxy, '/apiproxy/targets/default.xml');
+      var fileData = fs.readFileSync(filePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(fileData, function (err, result) {
+        result.should.have.property('TargetEndpoint');
+        result.should.have.property('TargetEndpoint').property('PreFlow');
+        should.exist(result.TargetEndpoint.PreFlow[0].Request[0], 'Request found in PreFlow');
+        should.equal(result.TargetEndpoint.PreFlow[0].Request[0].length, 0, 'Request step not found in PreFlow');
+        done();
+      });
+    });
+
     describe('virtualhosts option', function(done) {
       it("missing -v flag should generate both default and secure", function(done) {
         options.apiProxy = 'petStoreVirtualBoth';
@@ -67,7 +77,6 @@ describe('generateApi with CORS proxy', function() {
           parser.parseString(proxiesFileData, function (err, result) {
             result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
             var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
-            console.log(vhost);
             vhost.should.eql(['default','secure'], 'secure virtual host found');
             done();
           });
@@ -84,7 +93,6 @@ describe('generateApi with CORS proxy', function() {
           parser.parseString(proxiesFileData, function (err, result) {
             result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
             var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
-            console.log(vhost);
             vhost.should.eql(['secure'], 'secure virtual host found');
             done();
           });
@@ -101,7 +109,6 @@ describe('generateApi with CORS proxy', function() {
           parser.parseString(proxiesFileData, function (err, result) {
             result.should.have.property('ProxyEndpoint').property('HTTPProxyConnection');
             var vhost = result.ProxyEndpoint.HTTPProxyConnection[0].VirtualHost;
-            console.log(vhost);
             vhost.should.eql(['default'], 'secure virtual host found');
             done();
           });
