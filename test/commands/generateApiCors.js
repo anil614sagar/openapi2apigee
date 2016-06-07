@@ -9,13 +9,18 @@ var xml2js = require('xml2js');
 
 describe('generateApi with CORS proxy', function() {
   var options = {
-    source : path.join(__dirname, '/swagger_files/cors.yaml'),
+    source : path.join(__dirname, '/openapi_files/cors.yaml'),
     destination : path.join(__dirname, '../../api_bundles'),
     apiProxy :'petStoreCors'
   };
 
-  describe('generate', function(done) {
-    it('Correct swagger file should generate proxy', function(done) {
+  describe('generate', function() {
+    it('Correct openapi file should generate proxy', function(done) {
+      var options = {
+        source : path.join(__dirname, '/openapi_files/cors.yaml'),
+        destination : path.join(__dirname, '../../api_bundles'),
+        apiProxy :'petStoreCors'
+      }
       generateApi.generateApi(options.apiProxy, options, function(err, reply) {
         should.equal(err, null);
         done();

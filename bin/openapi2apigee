@@ -15,7 +15,7 @@ program
 program
   .usage('<command> <options>')
   .command('generateApi <apiProxy>')
-  .option('-s, --source <source>', 'Swagger File Source.')
+  .option('-s, --source <source>', 'openapi File Source.')
   .option('-d, --destination <destination>', 'API Bundle destination location.')
   .option('-D, --deploy', 'Deploy to Apigee Edge')
   .option('-b, --baseuri <baseuri>', 'Apigee Edge EndPoint to Deploy')
@@ -56,8 +56,8 @@ program
 program.on('--help', function(){
   console.log('  Examples:');
   console.log('');
-  console.log('    $ swagger2api generateApi --help');
-  console.log('    $ swagger2api generateApi -s http://petstore.swagger.io/v2/swagger.json -d /Users/Anil/Desktop/ -D petStore');
+  console.log('    $ openapi2apigee generateApi --help');
+  console.log('    $ openapi2apigee generateApi -s http://petstore.openapi.io/v2/openapi.json -d /Users/Anil/Desktop/ -D petStore');
   console.log('');
 });
 
