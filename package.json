@@ -1,32 +1,34 @@
 {
-  "name": "swagger2api",
-  "version": "0.3.1",
-  "description": "A tool that converts swagger yaml file to Apigee API Proxy Bundle",
+  "name": "openapi2apigee",
+  "version": "0.3.2",
+  "description": "A tool that converts openapi yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
   "scripts": {
     "test": "make test",
     "coverage": "istanbul cover _mocha -- test/util test/commands -R spec"
   },
   "bin": {
-    "swagger2api": "bin/swagger2api"
+    "openapi2apigee": "bin/openapi2apigee"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/anil614sagar/swagger-apigee-node-utility.git"
+    "url": "https://github.com/anil614sagar/openapi-apigee-node-utility.git"
   },
   "keywords": [
     "Apigee",
+    "OpenAPI",
     "Swagger",
     "Tool",
-    "Api",
-    "Proxy"
+    "API",
+    "Proxy",
+    "Proxies"
   ],
   "author": "Anil Sagar <anil614sagar@gmail.com> (https://in.linkedin.com/in/anilsagar/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anil614sagar/swagger-apigee-node-utility/issues"
+    "url": "https://github.com/anil614sagar/openapi-apigee-node-utility/issues"
   },
-  "homepage": "https://github.com/anil614sagar/swagger-apigee-node-utility",
+  "homepage": "https://github.com/anil614sagar/openapi-apigee-node-utility",
   "dependencies": {
     "apigeetool": "^0.5.4",
     "archiver": "^0.14.4",

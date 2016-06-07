@@ -9,20 +9,20 @@ var fs = require('fs');
 
 describe('generateApi', function() {
   describe('generate', function() {
-    it('Incorrect swagger file should generate error..', function(done) {
+    it('Incorrect openapi file should generate error..', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/swagger2.yaml'),
+        source : path.join(__dirname, '/openapi_files/openapi2.yaml'),
         destination : path.join(__dirname, '../../api_bundles'),
       }
       generateApi.generateApi('petStore', options, function(err, reply) {
         should.notEqual(err, null);
-        reply.error.should.eql('Swagger parsing failed..');
+        reply.error.should.eql('openapi parsing failed..');
         done();
       })
     });
-    it('Correct swagger file should not generate error..', function(done) {
+    it('Correct openapi file should not generate error..', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/swagger1.yaml'),
+        source : path.join(__dirname, '/openapi_files/openapi1.yaml'),
         destination : path.join(__dirname, '../../api_bundles'),
       }
       generateApi.generateApi('petStore', options, function(err, reply) {
@@ -53,7 +53,7 @@ describe('generateApi', function() {
   describe('generateSkeleton', function() {
     it('generate Skeleton should create folder structure', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/swagger1.yaml'),
+        source : path.join(__dirname, '/openapi_files/openapi1.yaml'),
         destination : path.join(__dirname, '../../api_bundles'),
         apiProxy : randomText()
       }
@@ -72,7 +72,7 @@ describe('generateApi', function() {
     });
     it('destination path ending with / should generate Skeleton Folder', function(done) {
       var options = {
-        source : path.join(__dirname, '/swagger_files/swagger1.yaml'),
+        source : path.join(__dirname, '/openapi_files/openapi1.yaml'),
         destination : path.join(__dirname, '../../api_bundles/'),
         apiProxy : randomText()
       }

@@ -9,13 +9,13 @@ var xml2js = require('xml2js');
 
 describe('generateApi with headers', function() {
   var options = {
-    source : path.join(__dirname, '/swagger_files/headers.yaml'),
+    source : path.join(__dirname, '/openapi_files/headers.yaml'),
     destination : path.join(__dirname, '../../api_bundles'),
     apiProxy :'petStoreHeaders'
   };
 
   describe('generate', function(done) {
-    it('Correct swagger file should generate proxy', function(done) {
+    it('Correct OpenApi file should generate proxy', function(done) {
       generateApi.generateApi(options.apiProxy, options, function(err, reply) {
         should.equal(err, null);
         done();
