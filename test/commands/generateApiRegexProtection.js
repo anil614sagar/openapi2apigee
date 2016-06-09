@@ -9,7 +9,7 @@ var xml2js = require('xml2js');
 
 describe('generateApi with regex-protection', function() {
   var options = {
-    source : path.join(__dirname, '/swagger_files/regex-protection.yaml'),
+    source : path.join(__dirname, '/openapi_files/regex-protection.yaml'),
     destination : path.join(__dirname, '../../api_bundles'),
     apiProxy :'petStoreRegexProtection'
   };
