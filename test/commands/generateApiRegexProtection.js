@@ -94,6 +94,31 @@ describe('generateApi with regex-protection', function() {
       });
     });
 
+    it('Proxy should contain parameter check in listPets flow', function(done) {
+      var filePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+      var fileData = fs.readFileSync(filePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(fileData, function (err, result) {
+        if (result.ProxyEndpoint.Flows[0].Flow[0].$.name === 'listPets') {
+          should.equal(result.ProxyEndpoint.Flows[0].Flow[0].Request[0].Step[0].Condition[0], '(request.queryparam.param1 Equals null) or (request.queryparam.param2 Equals null)', 'Param check found in listPets flow');
+          should.equal(result.ProxyEndpoint.Flows[0].Flow[0].Request[0].Step[0].Name[0], 'Raise Regex Error', 'Param check raise found in listPets flow');
+        }
+        done();
+      });
+    });
+
+    it('Proxy should contain quotaAnil in listPets flow', function(done) {
+      var filePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+      var fileData = fs.readFileSync(filePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(fileData, function (err, result) {
+        if (result.ProxyEndpoint.Flows[0].Flow[0].$.name === 'listPets') {
+          should.equal(result.ProxyEndpoint.Flows[0].Flow[0].Request[0].Step[1].Name[0], 'quotaAnil', 'quotaAnil found in listPets flow');
+        }
+        done();
+      });
+    });
+
 
   });
 });

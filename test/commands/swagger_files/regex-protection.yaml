@@ -97,6 +97,14 @@ paths:
           required: false
           type: integer
           format: int32
+        - name: param1
+          in: query
+          required: true
+          type: string
+        - name: param2
+          in: query
+          required: true
+          type: string
       responses:
         200:
           description: An paged array of pets
@@ -136,6 +144,10 @@ paths:
           in: path
           required: true
           description: The id of the pet to retrieve
+          type: string
+        - name: param1
+          in: query
+          required: true
           type: string
       responses:
         200:
