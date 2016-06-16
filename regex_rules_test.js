@@ -8,14 +8,14 @@ var context = {
     console.log(s, v);
   },
   proxyRequest: {
-    url: 'http://localhost/bla/create function foobar returns'
+    url: 'http://localhost/bla/x=create function foobar returns'
   }
 }
 
 var block = function (haystack, filters) {
   filters.some(function (jsonRegex) {
     // Create a regex from the json string.
-    print('regex',jsonRegex.rule);
+    // print('regex',jsonRegex.rule);
     var f = new RegExp(jsonRegex.rule, jsonRegex.flags);
     // print('regex',f);
     var hit = f.exec(haystack);
@@ -30,7 +30,7 @@ var block = function (haystack, filters) {
 elements.forEach(function (element) {
   var filters = element.filters;
   if (element.element === 'QueryParam') {
-    if (block(context.proxyRequest.url, filters)) {
+    if (block(decodeURIComponent(context.proxyRequest.url), filters)) {
       return;
     }
   }
