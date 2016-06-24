@@ -1,4 +1,10 @@
-# openapi-apigee-node-utility
+openapi-apigee-node-utility
+===========================
+
+[![npm version][npm-badge]][npm-url]
+[![Build Status][travis-badge]][travis-url]
+
+
 OpenAPI (formerly known as Swagger) to Apigee API Proxy Bundle using Node.js Utility
 
 # Installation
@@ -35,3 +41,9 @@ $ openapi2apigee generateApi petStore -s http://petstore.openapi.io/v2/openapi.j
 <a href="https://community.apigee.com/articles/9478/openapi2apigee-020-version-generating-apigee-policies.html">openapi2apigee Apigee-127 Extensions support</a>
 
 <a href="https://community.apigee.com/articles/9741/openapi2apigee-021-version-securing-apis-using-oas.html"> Secure APIs using OAuth 2.0 & Verify API Key Policies in Apigee using OpenAPI 2.0</a>
+
+
+[npm-badge]: https://badge.fury.io/js/openapi2apigee.svg
+[npm-url]: https://badge.fury.io/js/openapi2apigee
+[travis-badge]: https://travis-ci.org/anil614sagar/openapi2apigee.svg?branch=master
+[travis-url]: https://travis-ci.org/anil614sagar/openapi2apigee
