@@ -46,6 +46,7 @@ describe('generateApi with CORS proxy', function() {
         done();
       });
     });
+
     it('Proxies should contain add-cors step in PreFlow', function(done) {
       var proxiesFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
       var proxiesFileData = fs.readFileSync(proxiesFilePath);
@@ -54,6 +55,32 @@ describe('generateApi with CORS proxy', function() {
         result.should.have.property('ProxyEndpoint');
         result.should.have.property('ProxyEndpoint').property('PreFlow');
         should.equal(result.ProxyEndpoint.PreFlow[0].Response[0].Step[0].Name[0], 'add-cors', 'add-cors step in found in PreFlow');
+        done();
+      });
+    });
+
+    it('Proxies should contain noRoute for options request', function(done) {
+      var proxiesFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+      var proxiesFileData = fs.readFileSync(proxiesFilePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(proxiesFileData, function (err, result) {
+        result.should.have.property('ProxyEndpoint');
+        result.should.have.property('ProxyEndpoint').property('RouteRule');
+        should.equal(result.ProxyEndpoint.RouteRule[0].$.name, 'noRoute', 'noRoute found');
+        should.equal(result.ProxyEndpoint.RouteRule[0].Condition[0], 'request.verb == "OPTIONS"', 'condition is not correct');
+        done();
+      });
+    });
+
+    it('Proxies should contain OptionsPreFlight step in Flow', function(done) {
+      var proxiesFilePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+      var proxiesFileData = fs.readFileSync(proxiesFilePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(proxiesFileData, function (err, result) {
+        result.should.have.property('ProxyEndpoint');
+        result.should.have.property('ProxyEndpoint').property('Flows');
+        should.equal(result.ProxyEndpoint.Flows[0].Flow[0].$.name, 'OptionsPreFlight', 'OptionsPreFlight step in found in Flows');
+        should.equal(result.ProxyEndpoint.Flows[0].Flow[0].Response[0].Step[0].Name[0], 'add-cors', 'Response step found');
         done();
       });
     });
