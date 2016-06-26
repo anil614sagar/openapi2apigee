@@ -37,7 +37,7 @@
     "inquirer": "1.1.0",
     "mkdirp": "0.5.1",
     "stream-from-array": "1.0.0",
-    "swagger-parser": "2.5.0",
+    "swagger-parser": "3.4.1",
     "xmlbuilder": "8.2.2"
   },
   "devDependencies": {
