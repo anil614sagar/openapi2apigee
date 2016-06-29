@@ -38,6 +38,7 @@ describe('generateApi with regex-protection', function() {
         // Check Header name and value
         should.equal(result.Javascript.ResourceURL[0], 'jsc://regex-protection.js', 'regex protection script not found');
         should.equal(result.Javascript.IncludeURL[0], 'jsc://regex.js', 'regex js script not found');
+        should.equal(result.Javascript.IncludeURL[1], 'jsc://regex-protection-querystring.js', 'regex-protection-querystring js script not found');
         done();
       });
     });
@@ -46,8 +47,11 @@ describe('generateApi with regex-protection', function() {
       var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/regex-protection.js");
       var file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
-      var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/regex.js");
-      var file = fs.lstatSync(filePath);
+      filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/regex-protection-querystring.js");
+      file = fs.lstatSync(filePath);
+      should.equal(file.isFile(), true);
+      filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/regex.js");
+      file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
       done();
     });
