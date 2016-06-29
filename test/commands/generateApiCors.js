@@ -55,6 +55,7 @@ describe('generateApi with CORS proxy', function() {
         result.should.have.property('ProxyEndpoint');
         result.should.have.property('ProxyEndpoint').property('PreFlow');
         should.equal(result.ProxyEndpoint.PreFlow[0].Response[0].Step[0].Name[0], 'add-cors', 'add-cors step in found in PreFlow');
+        should.equal(result.ProxyEndpoint.PreFlow[0].Response[0].Step[0].Condition[0], 'request.verb != "OPTIONS"', 'add-cors condition in found in PreFlow');
         done();
       });
     });
