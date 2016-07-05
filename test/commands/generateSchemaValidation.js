@@ -37,7 +37,7 @@ describe('generateApi with schema validation', function() {
         result.should.have.property('Javascript').property('ResourceURL');
         // Check Header name and value
         should.equal(result.Javascript.ResourceURL[0], 'jsc://schema-validation.js', 'schema validation script not found');
-        should.equal(result.Javascript.IncludeURL[0], 'jsc://schemas.js', 'schemas.js script not found');
+        should.equal(result.Javascript.IncludeURL[0], 'jsc://api.js', 'api.js script not found');
         done();
       });
     });
@@ -46,7 +46,7 @@ describe('generateApi with schema validation', function() {
       var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/schema-validation.js");
       var file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
-      var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/schemas.js");
+      var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/api.js");
       var file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
       done();

@@ -35,6 +35,7 @@
     "commander": "^2.8.1",
     "easy-zip": "0.0.4",
     "inquirer": "1.1.1",
+    "lodash.omit": "4.3.0",
     "mkdirp": "0.5.1",
     "stream-from-array": "1.0.0",
     "swagger-parser": "3.4.1",
