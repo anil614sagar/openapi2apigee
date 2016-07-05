@@ -34,7 +34,7 @@
     "async": "^1.4.2",
     "commander": "^2.8.1",
     "easy-zip": "0.0.4",
-    "inquirer": "1.1.0",
+    "inquirer": "1.1.1",
     "mkdirp": "0.5.1",
     "stream-from-array": "1.0.0",
     "swagger-parser": "3.4.1",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "mocha": "^2.2.5",
-    "rimraf": "2.5.2",
+    "rimraf": "2.5.3",
     "should": "9.0.2",
     "xml2js": "0.4.16"
   }
