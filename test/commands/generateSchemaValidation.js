@@ -7,7 +7,7 @@ var generateSkeleton = require('../../lib/commands/generateApi/generateSkeleton.
 var fs = require('fs');
 var xml2js = require('xml2js');
 
-describe('generateApi with regex-protection', function() {
+describe('generateApi with schema validation', function() {
   var options = {
     source : path.join(__dirname, '/openapi_files/schema-validation.yaml'),
     destination : path.join(__dirname, '../../api_bundles'),
@@ -37,12 +37,16 @@ describe('generateApi with regex-protection', function() {
         result.should.have.property('Javascript').property('ResourceURL');
         // Check Header name and value
         should.equal(result.Javascript.ResourceURL[0], 'jsc://schema-validation.js', 'schema validation script not found');
+        should.equal(result.Javascript.IncludeURL[0], 'jsc://schemas.js', 'schemas.js script not found');
         done();
       });
     });
 
     it('Js files should be generated', function(done) {
       var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/schema-validation.js");
+      var file = fs.lstatSync(filePath);
+      should.equal(file.isFile(), true);
+      var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/schemas.js");
       var file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
       done();
