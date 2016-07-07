@@ -13,6 +13,24 @@ consumes:
 produces:
   - application/json
 x-a127-services:
+  input-validation:
+    provider: x-input-validation
+    apply:
+      pipe: request
+      endPoint: proxy
+    options:
+      displayName: Add Input Validation
+      continueOnError: 'true'
+  raiseInputValidationFault:
+    provider: x-raiseInputValidationFault
+    apply:
+      pipe: request
+      endPoint: proxy
+    options:
+      displayName: Raise Input Validation Error
+      statusCode: 400
+      reasonPhrase: Bad Request
+      continueOnError: 'false'
   output-validation:
     provider: x-output-validation
     apply:
@@ -21,13 +39,13 @@ x-a127-services:
     options:
       displayName: Add Output Validation
       continueOnError: 'true'
-  raiseValidationFault:
-    provider: x-raiseValidationFault
+  raiseOutputValidationFault:
+    provider: x-raiseOutputValidationFault
     apply:
       pipe: response
       endPoint: proxy
     options:
-      displayName: Raise Validation Error
+      displayName: Raise Output Validation Error
       statusCode: 500
       reasonPhrase: Server Error
       continueOnError: 'false'

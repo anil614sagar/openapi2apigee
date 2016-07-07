@@ -53,7 +53,7 @@ describe('generateApi with schema validation', function() {
     });
 
     it('Raise fault policy should be generated', function(done) {
-      var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/policies/raiseValidationFault.xml");
+      var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/policies/raiseOutputValidationFault.xml");
       var file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
 
@@ -89,7 +89,31 @@ describe('generateApi with schema validation', function() {
       parser.parseString(fileData, function (err, result) {
         result.should.have.property('ProxyEndpoint');
         result.should.have.property('ProxyEndpoint').property('PostFlow');
-        should.equal(result.ProxyEndpoint.PostFlow[0].Response[0].Step[1].Name[0], 'Raise Validation Error', 'Raise Validation Error step in found in PostFlow');
+        should.equal(result.ProxyEndpoint.PostFlow[0].Response[0].Step[1].Name[0], 'Raise Output Validation Error', 'Raise Validation Error step in found in PostFlow');
+        done();
+      });
+    });
+
+    it('Proxy should contain Add Validation step in PreFlow', function(done) {
+      var filePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+      var fileData = fs.readFileSync(filePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(fileData, function (err, result) {
+        result.should.have.property('ProxyEndpoint');
+        result.should.have.property('ProxyEndpoint').property('PreFlow');
+        should.equal(result.ProxyEndpoint.PreFlow[0].Request[0].Step[0].Name[0], 'Add Input Validation', 'Input Validation step in found in PostFlow');
+        done();
+      });
+    });
+
+    it('Proxy should contain Raise Input Validation Error step in PreFlow', function(done) {
+      var filePath = path.join(options.destination, options.apiProxy, '/apiproxy/proxies/default.xml');
+      var fileData = fs.readFileSync(filePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(fileData, function (err, result) {
+        result.should.have.property('ProxyEndpoint');
+        result.should.have.property('ProxyEndpoint').property('PreFlow');
+        should.equal(result.ProxyEndpoint.PreFlow[0].Request[0].Step[1].Name[0], 'Raise Input Validation Error', 'Raise Input Validation Error step in found in PreFlow');
         done();
       });
     });
