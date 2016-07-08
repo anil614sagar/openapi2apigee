@@ -25,7 +25,7 @@ describe('generateApi with schema validation', function() {
 
   describe('Add schema validation policy', function() {
 
-    it('Schema validation protection policy should be generated', function(done) {
+    it('Output validation protection policy should be generated', function(done) {
       var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/policies/output-validation.xml");
       var file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
@@ -42,12 +42,32 @@ describe('generateApi with schema validation', function() {
       });
     });
 
+    it('Input validation protection policy should be generated', function(done) {
+      var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/policies/input-validation.xml");
+      var file = fs.lstatSync(filePath);
+      should.equal(file.isFile(), true);
+
+      var fileData = fs.readFileSync(filePath);
+      var parser = new xml2js.Parser();
+      parser.parseString(fileData, function (err, result) {
+        result.should.have.property('Javascript');
+        result.should.have.property('Javascript').property('ResourceURL');
+        // Check Header name and value
+        should.equal(result.Javascript.ResourceURL[0], 'jsc://input-validation.js', 'input validation script not found');
+        should.equal(result.Javascript.IncludeURL[0], 'jsc://api.js', 'api.js script not found');
+        done();
+      });
+    });
+
     it('Js files should be generated', function(done) {
       var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/schema-validation.js");
       var file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
-      var filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/api.js");
-      var file = fs.lstatSync(filePath);
+      filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/input-validation.js");
+      file = fs.lstatSync(filePath);
+      should.equal(file.isFile(), true);
+      filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/api.js");
+      file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
       done();
     });
