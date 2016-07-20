@@ -38,6 +38,7 @@ describe('generateApi with schema validation', function() {
         // Check Header name and value
         should.equal(result.Javascript.ResourceURL[0], 'jsc://schema-validation.js', 'schema validation script not found');
         should.equal(result.Javascript.IncludeURL[0], 'jsc://api.js', 'api.js script not found');
+        should.equal(result.Javascript.IncludeURL[1], 'jsc://regex-utils.js', 'regex-utils.js script not found');
         done();
       });
     });
@@ -67,6 +68,9 @@ describe('generateApi with schema validation', function() {
       file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
       filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/api.js");
+      file = fs.lstatSync(filePath);
+      should.equal(file.isFile(), true);
+      filePath = path.join(options.destination, options.apiProxy + "/apiproxy/resources/jsc/regex-utils.js");
       file = fs.lstatSync(filePath);
       should.equal(file.isFile(), true);
       done();
