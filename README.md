@@ -17,7 +17,7 @@ The `openapi2apigee` module (and its dependencies) is designed for Node.js and i
 
 ### From a Terminal Window:
 ```bash
-$ sudo npm install -g openapi2apigee
+$ npm install -g openapi2apigee
 ```
 
 # <a name="reference"></a>Command reference and examples
