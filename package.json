@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/anil614sagar/openapi-apigee-node-utility.git"
+    "url": "https://github.com/anil614sagar/openapi2apigee.git"
   },
   "keywords": [
     "Apigee",
@@ -26,9 +26,9 @@
   "author": "Anil Sagar <anil614sagar@gmail.com> (https://in.linkedin.com/in/anilsagar/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anil614sagar/openapi-apigee-node-utility/issues"
+    "url": "https://github.com/anil614sagar/openapi2apigee/issues"
   },
-  "homepage": "https://github.com/anil614sagar/openapi-apigee-node-utility",
+  "homepage": "https://github.com/anil614sagar/openapi2apigee",
   "dependencies": {
     "apigeetool": "0.6.3",
     "async": "^1.4.2",
