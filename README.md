@@ -31,7 +31,7 @@ Generates Apigee API Bundles from OpenAPI files and help you deploy to Apigee Ed
 #### Examples
 
 ```bash
-$ openapi2apigee generateApi petStore -s http://petstore.openapi.io/v2/openapi.json -D -d /Users/Anil/Desktop/
+$ openapi2apigee generateApi petStore -s http://petstore.swagger.io/v2/swagger.json -D -d /Users/Anil/Desktop/
 ```
 
 #### Articles
