@@ -39,6 +39,34 @@ x-a127-services:
           default: "random_token"
           description: >
             token header
+  add-headers-security:
+    provider: x-headers
+    apply:
+      pipe: response
+      endPoint: proxy
+    options:
+      displayName: Add security headers
+      headers:
+        Strict-Transport-Security:
+          type: string
+          default: "max-age=31536000; includeSubDomains; preload"
+          description: >
+            HSTS header
+        X-XSS-Protection:
+          type: string
+          default: "1; mode=block"
+          description: >
+            XSS protection header
+        X-Content-Type-Options:
+          type: string
+          default: "nosniff"
+          description: >
+            XSS protection header
+        X-Frame-Options:
+          type: string
+          default: "deny"
+          description: >
+            XSS protection header
   quotaAnil:
     provider: volos-quota-memory
     options:
