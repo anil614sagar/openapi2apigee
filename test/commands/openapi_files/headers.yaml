@@ -52,6 +52,21 @@ x-a127-services:
           default: "max-age=31536000; includeSubDomains; preload"
           description: >
             HSTS header
+        X-XSS-Protection:
+          type: string
+          default: "1; mode=block"
+          description: >
+            XSS protection header
+        X-Content-Type-Options:
+          type: string
+          default: "nosniff"
+          description: >
+            XSS protection header
+        X-Frame-Options:
+          type: string
+          default: "deny"
+          description: >
+            XSS protection header
   quotaAnil:
     provider: volos-quota-memory
     options:
