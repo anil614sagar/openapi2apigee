@@ -46,6 +46,7 @@ x-a127-services:
       endPoint: proxy
     options:
       displayName: Add security headers
+      assignTo: response
       headers:
         Strict-Transport-Security:
           type: string
