@@ -1,6 +1,6 @@
 {
   "name": "openapi2apigee",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "A tool that converts openapi yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
   "scripts": {
