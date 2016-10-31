@@ -39,6 +39,7 @@ describe('generateApi with schema validation', function() {
         should.equal(result.Javascript.ResourceURL[0], 'jsc://schema-validation.js', 'schema validation script not found');
         should.equal(result.Javascript.IncludeURL[0], 'jsc://api.js', 'api.js script not found');
         should.equal(result.Javascript.IncludeURL[1], 'jsc://regex-utils.js', 'regex-utils.js script not found');
+        should.equal(result.Javascript.IncludeURL[2], 'jsc://bundle-policify.js', 'bundle-policify.js script not found');
         done();
       });
     });
