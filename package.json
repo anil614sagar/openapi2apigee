@@ -45,6 +45,7 @@
   "devDependencies": {
     "mocha": "^3.1.2",
     "policify": "^0.0.10",
+    "openapi-utils-path-for-uri": "0.0.3",
     "rimraf": "^2.5.3",
     "should": "^11.1.1",
     "uglify-js": "^2.7.4",
