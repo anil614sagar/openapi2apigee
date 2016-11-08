@@ -1,5 +1,6 @@
 var ZSchema = require('z-schema');
-var openapiUtil = require('openapi-utils-path-for-uri');
+var openapiUtilPath = require('openapi-utils-path-for-uri');
+var openapiUtilParam = require('openapi-utils-param-to-schema');
 
 ZSchema = new ZSchema({
   breakOnFirstError: true,
@@ -16,7 +17,8 @@ var policify = {
   getLastError: function () {
     return ZSchema.getLastError();
   },
-  getResourceForPath: openapiUtil.pathForUri 
+  getResourceForPath: openapiUtilPath.pathForUri,
+  paramToSchema: openapiUtilParam.paramToSchema
 };
 
 module.exports = policify;
