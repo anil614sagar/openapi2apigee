@@ -46,7 +46,7 @@
     "mocha": "^3.1.2",
     "openapi-utils-param-to-schema": "0.0.5",
     "openapi-utils-path-for-uri": "0.0.5",
-    "policify": "^0.0.10",
+    "policify": "^0.0.11",
     "rimraf": "^2.5.4",
     "should": "^11.1.1",
     "uglify-js": "^2.7.4",
