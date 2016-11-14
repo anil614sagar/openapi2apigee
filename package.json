@@ -34,7 +34,7 @@
     "async": "^2.1.2",
     "commander": "^2.8.1",
     "easy-zip": "0.0.4",
-    "inquirer": "1.2.2",
+    "inquirer": "1.2.3",
     "lodash.assign": "4.2.0",
     "lodash.omit": "4.5.0",
     "mkdirp": "0.5.1",
