@@ -3,7 +3,7 @@ openapi-apigee-node-utility
 
 [![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
-
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 OpenAPI (formerly known as Swagger) to Apigee API Proxy Bundle using Node.js Utility
 
