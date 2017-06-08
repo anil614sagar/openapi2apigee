@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: 1.0.0
-  title: Swagger Petstore Headers
+  title: Swagger Petstore Regex Protection (x-a127-services array)
   license:
     name: MIT
 host: petstore.swagger.io
@@ -13,7 +13,43 @@ consumes:
 produces:
   - application/json
 x-a127-services:
-  add-headers-x-api-key:
+  - name: input-validation
+    provider: x-input-validation
+    apply:
+      pipe: request
+      endPoint: proxy
+    options:
+      displayName: Add Input Validation
+      continueOnError: 'true'
+  - name: raiseInputValidationFault
+    provider: x-raiseInputValidationFault
+    apply:
+      pipe: request
+      endPoint: proxy
+    options:
+      displayName: Raise Input Validation Error
+      statusCode: 400
+      reasonPhrase: Bad Request
+      continueOnError: 'false'
+  - name: output-validation
+    provider: x-output-validation
+    apply:
+      pipe: response
+      endPoint: proxy
+    options:
+      displayName: Add Output Validation
+      continueOnError: 'true'
+  - name: raiseOutputValidationFault
+    provider: x-raiseOutputValidationFault
+    apply:
+      pipe: response
+      endPoint: proxy
+    options:
+      displayName: Raise Output Validation Error
+      statusCode: 500
+      reasonPhrase: Server Error
+      continueOnError: 'false'
+  - name: add-headers-x-api-key
     provider: x-headers
     apply:
       pipe: request
@@ -26,7 +62,7 @@ x-a127-services:
           default: "random_api_key"
           description: >
             x-api-key header
-  add-headers-token:
+  - name: add-headers-token
     provider: x-headers
     apply:
       pipe: request
@@ -39,42 +75,13 @@ x-a127-services:
           default: "random_token"
           description: >
             token header
-  add-headers-security:
-    provider: x-headers
-    apply:
-      pipe: response
-      endPoint: proxy
-    options:
-      displayName: Add security headers
-      assignTo: response
-      headers:
-        Strict-Transport-Security:
-          type: string
-          default: "max-age=31536000; includeSubDomains; preload"
-          description: >
-            HSTS header
-        X-XSS-Protection:
-          type: string
-          default: "1; mode=block"
-          description: >
-            XSS protection header
-        X-Content-Type-Options:
-          type: string
-          default: "nosniff"
-          description: >
-            XSS protection header
-        X-Frame-Options:
-          type: string
-          default: "deny"
-          description: >
-            XSS protection header
-  quotaAnil:
+  - name: quotaAnil
     provider: volos-quota-memory
     options:
       timeUnit: day
       interval: 2
       allow: 2500
-  oauth2:
+  - name: oauth2
     provider: volos-oauth-apigee
     options:
       tokenLifetime: 300000
@@ -108,6 +115,14 @@ paths:
           required: false
           type: integer
           format: int32
+        - name: param1
+          in: query
+          required: true
+          type: string
+        - name: param2
+          in: query
+          required: true
+          type: string
       responses:
         200:
           description: An paged array of pets
@@ -147,6 +162,10 @@ paths:
           in: path
           required: true
           description: The id of the pet to retrieve
+          type: string
+        - name: param1
+          in: query
+          required: true
           type: string
       responses:
         200:

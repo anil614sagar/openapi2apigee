@@ -1,10 +1,10 @@
 {
   "name": "openapi2apigee",
-  "version": "0.3.4",
+  "version": "0.6.1",
   "description": "A tool that converts openapi yaml file to Apigee API Proxy Bundle",
   "main": "index.js",
   "scripts": {
-    "test": "make test",
+    "test": "standard && ./node_modules/.bin/mocha test/commands/config.js test/commands/*.js",
     "coverage": "istanbul cover _mocha -- test/util test/commands -R spec"
   },
   "bin": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/anil614sagar/openapi-apigee-node-utility.git"
+    "url": "https://github.com/anil614sagar/openapi2apigee.git"
   },
   "keywords": [
     "Apigee",
@@ -26,26 +26,46 @@
   "author": "Anil Sagar <anil614sagar@gmail.com> (https://in.linkedin.com/in/anilsagar/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/anil614sagar/openapi-apigee-node-utility/issues"
+    "url": "https://github.com/anil614sagar/openapi2apigee/issues"
   },
-  "homepage": "https://github.com/anil614sagar/openapi-apigee-node-utility",
+  "homepage": "https://github.com/anil614sagar/openapi2apigee",
   "dependencies": {
-    "apigeetool": "0.6.3",
-    "async": "^1.4.2",
+    "apigeetool": "0.6.6",
+    "async": "^2.1.2",
     "commander": "^2.8.1",
     "easy-zip": "0.0.4",
-    "inquirer": "1.1.1",
-    "lodash.assign": "4.0.9",
-    "lodash.omit": "4.3.0",
+    "inquirer": "1.2.3",
+    "lodash.assign": "4.2.0",
+    "lodash.omit": "4.5.0",
     "mkdirp": "0.5.1",
     "stream-from-array": "1.0.0",
     "swagger-parser": "3.4.1",
     "xmlbuilder": "8.2.2"
   },
   "devDependencies": {
-    "mocha": "^2.2.5",
-    "rimraf": "2.5.3",
-    "should": "9.0.2",
-    "xml2js": "0.4.16"
+    "async": "^2.1.4",
+    "inquirer": "^1.2.3",
+    "mocha": "^3.2.0",
+    "openapi-utils-param-to-schema": "0.0.8",
+    "openapi-utils-path-for-uri": "0.0.6",
+    "openapi-utils-schema-from-api": "0.0.4",
+    "policify": "0.0.12",
+    "rimraf": "^2.5.4",
+    "should": "^11.1.1",
+    "standard": "^8.6.0",
+    "uglify-js": "^2.7.4",
+    "xml2js": "^0.4.17",
+    "z-schema": "^3.18.1"
+  },
+  "standard": {
+    "globals": [
+      "should",
+      "describe",
+      "it"
+    ],
+    "ignore": [
+      "./lib/resource_templates/jsc/bundle-policify.js",
+      "lib/resource_templates/jsc/bundle-policify.js"
+    ]
   }
 }

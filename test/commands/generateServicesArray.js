@@ -8,9 +8,9 @@ var xml2js = require('xml2js')
 
 describe('generateApi with schema validation', function () {
   var options = {
-    source: path.join(__dirname, '/openapi_files/schema-validation.yaml'),
+    source: path.join(__dirname, '/openapi_files/services-array.yaml'),
     destination: path.join(__dirname, '../../api_bundles'),
-    apiProxy: 'petStoreSchemaValidation'
+    apiProxy: 'petStoreServicesArray'
   }
 
   describe('generate', function (done) {
@@ -38,7 +38,6 @@ describe('generateApi with schema validation', function () {
         should.equal(result.Javascript.ResourceURL[0], 'jsc://schema-validation.js', 'schema validation script not found')
         should.equal(result.Javascript.IncludeURL[0], 'jsc://api.js', 'api.js script not found')
         // should.equal(result.Javascript.IncludeURL[1], 'jsc://regex-utils.js', 'regex-utils.js script not found');
-        should.equal(result.Javascript.IncludeURL[1], 'jsc://bundle-policify.js', 'bundle-policify.js script not found')
         done()
       })
     })

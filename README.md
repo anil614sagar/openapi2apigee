@@ -3,7 +3,7 @@ openapi-apigee-node-utility
 
 [![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
-
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 OpenAPI (formerly known as Swagger) to Apigee API Proxy Bundle using Node.js Utility
 
@@ -17,7 +17,7 @@ The `openapi2apigee` module (and its dependencies) is designed for Node.js and i
 
 ### From a Terminal Window:
 ```bash
-$ sudo npm install -g openapi2apigee
+$ npm install -g openapi2apigee
 ```
 
 # <a name="reference"></a>Command reference and examples
@@ -31,7 +31,7 @@ Generates Apigee API Bundles from OpenAPI files and help you deploy to Apigee Ed
 #### Examples
 
 ```bash
-$ openapi2apigee generateApi petStore -s http://petstore.openapi.io/v2/openapi.json -D -d /Users/Anil/Desktop/
+$ openapi2apigee generateApi petStore -s http://petstore.swagger.io/v2/swagger.json -D -d /Users/Anil/Desktop/
 ```
 
 #### Articles

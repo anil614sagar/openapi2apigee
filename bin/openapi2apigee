@@ -20,7 +20,7 @@ program
   .option('-D, --deploy', 'Deploy to Apigee Edge')
   .option('-b, --baseuri <baseuri>', 'Apigee Edge EndPoint to Deploy')
   .option('-o, --organization <organization>', 'Apigee Edge Organization to Deploy')
-  .option('-e, --environment <environment>', 'Apigee Edge Environment to Deploy')
+  .option('-e, --environments <environments>', 'Apigee Edge Environment to Deploy')
   .option('-v, --virtualhosts <virtualhosts>', 'Apigee Edge virtual hosts to Deploy')
   .option('-u, --username <username>', 'Apigee Edge Username to Deploy')
   .option('-p, --password <password>', 'Apigee Edge Password to Deploy')
@@ -31,6 +31,7 @@ program
     command.generateApi(apiProxy, options, function(err, reply) {
       if(err) {
         console.log(err);
+        process.exit(1);
       }
       else {
         if (options.destination) {
@@ -43,6 +44,7 @@ program
           deploy.deployApi(apiProxy, options, function (err, reply) {
             if (err) {
               console.log(err);
+              process.exit(1);
             }
             else {
               console.log('Deployment to Apigee successfully completed.');
@@ -65,4 +67,5 @@ program.parse(process.argv);
 
 if (!process.argv.slice(2).length || !executed) {
   program.outputHelp();
+  process.exit(1);
 }

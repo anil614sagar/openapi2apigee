@@ -1,10 +1,10 @@
 swagger: "2.0"
 info:
   version: 1.0.0
-  title: Swagger Petstore Headers
+  title: openapi Petstore Cors
   license:
     name: MIT
-host: petstore.swagger.io
+host: petstore.openapi.io
 basePath: /v1
 schemes:
   - http
@@ -13,68 +13,53 @@ consumes:
 produces:
   - application/json
 x-a127-services:
-  add-headers-x-api-key:
-    provider: x-headers
-    apply:
-      pipe: request
-      endPoint: target
+  - name: add-cors
+    provider: x-cors
     options:
-      displayName: Add AWS api key header
+      displayName: Add CORS
       headers:
-        x-api-key:
+        Access-Control-Allow-Origin:
           type: string
-          default: "random_api_key"
+          default: "*"
           description: >
-            x-api-key header
-  add-headers-token:
-    provider: x-headers
-    apply:
-      pipe: request
-      endPoint: target
-    options:
-      displayName: Add token header
-      headers:
-        x-token:
-          type: string
-          default: "random_token"
+            Setting this header to `*` allows all origins.
+            This is handy for public REST APIs that don't require
+            authentication. But, according to the HTTP spec, browsers
+            *WILL NOT* send cookies if this header is `*`, regardless
+            of what you set `Access-Control-Allow-Credentials` to.
+        Access-Control-Allow-Credentials:
+          type: boolean
+          default: false
           description: >
-            token header
-  add-headers-security:
-    provider: x-headers
-    apply:
-      pipe: response
-      endPoint: proxy
-    options:
-      displayName: Add security headers
-      assignTo: response
-      headers:
-        Strict-Transport-Security:
-          type: string
-          default: "max-age=31536000; includeSubDomains; preload"
+            Setting this header to `false` means that your API does not
+            use authentication cookies.
+        Access-Control-Allow-Headers:
+          type: array
+          collectionFormat: csv
+          default: origin, x-requested-with, accept
           description: >
-            HSTS header
-        X-XSS-Protection:
-          type: string
-          default: "1; mode=block"
+            This shows how you can explicitly specify which HTTP headers
+            your API allows.
+        Access-Control-Allow-Methods:
+          type: array
+          collectionFormat: csv
+          default: GET, PUT, POST, DELETE
           description: >
-            XSS protection header
-        X-Content-Type-Options:
-          type: string
-          default: "nosniff"
+            This shows how you can explicitly specify which HTTP methods
+            your API allows.
+        Access-Control-Max-Age:
+          type: integer
+          default: 3628800
           description: >
-            XSS protection header
-        X-Frame-Options:
-          type: string
-          default: "deny"
-          description: >
-            XSS protection header
-  quotaAnil:
+            This allows client browsers to cache the CORS response for
+            one day (3628800 seconds).
+  - name: quotaAnil
     provider: volos-quota-memory
     options:
       timeUnit: day
       interval: 2
       allow: 2500
-  oauth2:
+  - name: oauth2
     provider: volos-oauth-apigee
     options:
       tokenLifetime: 300000
