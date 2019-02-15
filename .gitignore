@@ -4,3 +4,4 @@ api_bundles
 coverage
 .DS_Store
 .idea
+/.vscode
