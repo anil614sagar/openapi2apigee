@@ -1,7 +1,7 @@
 {
   "name": "openapi2apigee",
-  "version": "0.6.1",
-  "description": "A tool that converts openapi yaml file to Apigee API Proxy Bundle",
+  "version": "0.7.0",
+  "description": "A tool that converts OpenAPI/Swagger 2.0 spec file to Apigee API Proxy Bundle",
   "main": "index.js",
   "scripts": {
     "test": "standard && ./node_modules/.bin/mocha test/commands/config.js test/commands/*.js",
@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "async": "^2.1.4",
+    "growl": "^1.10.2",
     "inquirer": "^1.2.3",
     "mocha": "^3.2.0",
     "openapi-utils-param-to-schema": "0.0.8",
