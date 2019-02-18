@@ -26,7 +26,7 @@ CMD node ./bin/openapi2apigee \
         -u ${APIGEE_USER_ID} \
         -p ${APIGEE_USER_PASSWORD} \
         -s ${OPEN_API} \
-        -d /usr/tmp  -D \
+        -d /usr/tmp \
         -t ${SERVICE_ENDPOINT_URL} \
         -e ${APIGEE_ENVIRONMENTS} \
         -v ${APIGEE_VIRTUAL_HOSTS} \
