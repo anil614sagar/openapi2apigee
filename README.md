@@ -56,9 +56,10 @@ Project's Dockerfile enables running `openapi2apigee` as a Docker
 container, eliminating the need to have Node.js installed on the system
 where it runs. Having Docker installed is required instead.
 
-Please note that since Docker images are immutable, generating Proxy
-Bundle and storing it within the Container for later use makes no sense.
-Therefore, `openapi2apigee` Docker container always runs the tool
+Please note that since Docker images are immutable, so generating Proxy 
+Bundle and storing it within the Container for later use makes no sense. 
+Therefore, openapi2apigee Docker container always runs the tool with the 
+-D option, i.e. deploying the Proxy to Apigee.
 
 ### Building the Image
 
