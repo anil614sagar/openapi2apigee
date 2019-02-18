@@ -56,8 +56,8 @@ Project's Dockerfile enables running `openapi2apigee` as a Docker
 container, eliminating the need to have Node.js installed on the system
 where it runs. Having Docker installed is required instead.
 
-Please note thta since Docker images are immutable, generating Proxy
-Bundle and storing it within the Contaienr for later use makes no sense.
+Please note that since Docker images are immutable, generating Proxy
+Bundle and storing it within the Container for later use makes no sense.
 Therefore, `openapi2apigee` Docker container always runs the tool
 
 ### Building the Image
@@ -82,7 +82,7 @@ to the container, when container is run:
   one specified in the OpenAPI spec will be used.
 * **APIGEE_ENVIRONMENTS** (optional): Default is 'test'. Apigee environment(s) to which Proxy will be deployed. Multiple environments
 could be specified by comma, like `test,prod`.
-* **APIGEE_VIRTUAL_HOSTS** (optional): Defauls it 'default,secure'. Allows
+* **APIGEE_VIRTUAL_HOSTS** (optional): Default is 'default,secure'. Allows
   specifying Apigee virtual hosts for the target endpoint.
 * **APIGEE_BASE_URL** (optional): Default is 'https://api.enterprise.apigee.com'. Apigee Edge API base URL.
 
