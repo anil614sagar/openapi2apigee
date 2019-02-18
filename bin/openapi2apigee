@@ -27,6 +27,9 @@ program
 
   .description('Generates Apigee API Bundle from OpenAPI/Swagger 2.0 spec file')
   .action(function(apiProxy, options) {
+
+    //printOptionValues(options);
+
     executed = true;
     command.generateApi(apiProxy, options, function(err, reply) {
       if(err) {
@@ -68,4 +71,34 @@ program.parse(process.argv);
 if (!process.argv.slice(2).length || !executed) {
   program.outputHelp();
   process.exit(1);
+}
+
+function printOptionValues(options) {
+
+  console.log('Execution parameters:');
+
+  options.options.forEach(element => {
+    var argName = element.long.substring(2);
+    var optionValue = options[argName];
+
+    if(argName && (typeof optionValue === 'string' || optionValue == null))  {
+
+      if(optionValue == null)
+        optionValue = '(null)';
+      else {
+        switch(element.short) {
+          case '-p': // Password, don't show
+            optionValue = "**************";
+            break;
+          case '-u': // Username needs obfuscation
+            var atIndex = optionValue.indexOf("@");
+            optionValue = optionValue.substring(0, 1) + "*************" + 
+                (atIndex < 0 ? "" : optionValue.substring(atIndex));
+            break;
+        }
+      }
+
+      console.log(element.short, ":", optionValue);
+    }
+  });
 }
