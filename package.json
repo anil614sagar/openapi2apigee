@@ -39,7 +39,7 @@
     "lodash.omit": "4.5.0",
     "mkdirp": "0.5.1",
     "stream-from-array": "1.0.0",
-    "swagger-parser": "3.4.1",
+    "swagger-parser": "6.0.5",
     "xmlbuilder": "8.2.2"
   },
   "devDependencies": {
