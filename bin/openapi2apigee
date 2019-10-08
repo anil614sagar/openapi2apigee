@@ -5,7 +5,7 @@ var program = require('commander');
 var command = require('../lib/commands/generateApi/generateApi.js');
 var deploy = require('../lib/commands/deployApi/deployApi.js');
 var version = require('../lib/util/cli').version();
-
+var netrc = require('netrc')();
 
 var executed = false;
 
@@ -22,6 +22,7 @@ program
   .option('-o, --organization <organization>', 'Apigee Edge Organization to Deploy')
   .option('-e, --environments <environments>', 'Apigee Edge Environment to Deploy')
   .option('-v, --virtualhosts <virtualhosts>', 'Apigee Edge virtual hosts to Deploy')
+  .option('-n, --netrc', 'Use credentials in $HOME/.netrc (required)')
   .option('-u, --username <username>', 'Apigee Edge Username to Deploy')
   .option('-p, --password <password>', 'Apigee Edge Password to Deploy')
 
@@ -56,10 +57,23 @@ program
   });
 
 program.on('--help', function(){
-  console.log('  Examples:');
+  console.log('\n  Examples:');
   console.log('');
   console.log('    $ openapi2apigee generateApi --help');
-  console.log('    $ openapi2apigee generateApi -s http://petstore.openapi.io/v2/openapi.json -d /Users/Anil/Desktop/ -D petStore');
+
+  console.log('');
+  console.log('    $ export ORG=your-org');
+  console.log('    $ export ENV=your-env');
+  console.log('');
+  console.log('Swagger 2.0');
+  console.log('    $ export SRC=https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/yaml/petstore.yaml');
+  console.log('    $ openapi2apigee generateApi petsore-v2 -s $SRC -d ./examples_proxies');
+  console.log('    $ openapi2apigee generateApi petsore-v2 -s $SRC -d ./examples_proxies -n -b $URI -o $ORG -e $ENV -v secure -D ');
+  console.log('');
+  console.log('OAS 3.0.0');
+  console.log('    $ export SRC=https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml');
+  console.log('    $ openapi2apigee generateApi petsore-v3 -s $SRC -d ./examples_proxies');
+  console.log('    $ openapi2apigee generateApi petsore-v3 -s $SRC -d ./examples_proxies -n -b $URI -o $ORG -e $ENV -v secure -D');
   console.log('');
 });
 
