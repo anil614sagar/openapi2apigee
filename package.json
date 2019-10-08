@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "standard && ./node_modules/.bin/mocha test/commands/config.js test/commands/*.js",
-    "coverage": "istanbul cover _mocha -- test/util test/commands -R spec"
+    "coverage": "nyc _mocha -- test/util test/commands -R spec"
   },
   "bin": {
     "openapi2apigee": "bin/openapi2apigee"
@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
     "openapi-utils-param-to-schema": "0.0.8",
     "openapi-utils-path-for-uri": "0.0.6",
     "openapi-utils-schema-from-api": "0.0.4",
