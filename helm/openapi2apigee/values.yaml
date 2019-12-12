@@ -1,0 +1,42 @@
+# Default values for openapi2apigee.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: vgribok/openapi2apigee
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+secretName: apigee-credentials
+
+apigee:
+  username: null # Goes to the Secret
+  password: null # Goes to the Secret
+  organization: null # Goes to the Job
+  proxyName: null # Goes to the Job
+  openApiLocation: null # Goes to the Job
+  proxyTargetEndpointUrl: null # Goes to the Job
+  environments: test  # Goes to the Job
+  virtualHosts: default,secure  # Goes to the Job
+  baseUrl: https://api.enterprise.apigee.com  # Goes to the Job
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

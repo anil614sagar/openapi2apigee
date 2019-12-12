@@ -1,0 +1,61 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "openapi2apigee.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "openapi2apigee.name" . }}
+    helm.sh/chart: {{ include "openapi2apigee.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    release: {{.Release.Name | quote }}
+    heritage: {{.Release.Service | quote }}
+    chart: {{.Chart.Name}}-{{.Chart.Version}}
+  annotations:
+    # "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "-3"
+    "helm.sh/hook-delete-policy": hook-succeeded
+
+spec:
+  ttlSecondsAfterFinished: 60
+  backoffLimit: 1
+  template:
+    metadata:
+      name: {{ template "openapi2apigee.fullname" . }}
+      labels:
+        app.kubernetes.io/name: {{ include "openapi2apigee.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        helm.sh/chart: {{ include "openapi2apigee.chart" . }}
+        heritage: {{.Release.Service | quote }}
+        release: {{.Release.Name | quote }}
+        chart: {{.Chart.Name}}-{{.Chart.Version}}
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: {{ template "openapi2apigee.fullname" . }}
+          image: {{.Values.image.repository}}:{{.Values.image.tag}}
+          env:
+          - name: APIGEE_ORG
+            value: {{.Values.apigee.organization}}
+          - name: APIGEE_USER_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.secretName}}
+                key: username
+          - name: APIGEE_USER_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{.Values.secretName}}
+                key: password
+          - name: APIGEE_PROXY_NAME
+            value: {{.Values.apigee.proxyName}}
+          - name: OPEN_API
+            value: {{.Values.apigee.openApiLocation}}
+          - name: SERVICE_ENDPOINT_URL
+            value: {{.Values.apigee.proxyTargetEndpointUrl}}
+          - name: APIGEE_ENVIRONMENTS
+            value: {{.Values.apigee.environments}}
+          - name: APIGEE_VIRTUAL_HOSTS
+            value: {{.Values.apigee.virtualHosts}}
+          - name: APIGEE_BASE_URL
+            value: {{.Values.apigee.baseUrl}}
