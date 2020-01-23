@@ -7,6 +7,8 @@ openapi-apigee-node-utility
 
 `openapi2apigee` module converts a standard Open API spec (previously known as Swagger) into an Apigee API Proxy bundle and deploys into an Apigee Edge Organization.
 
+### Now supports OAS v3 as well
+
 # Pre-requisite 
 - node.js
 
