@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/anil614sagar/openapi2apigee",
   "dependencies": {
-    "apigeetool": "0.12.0",
+    "apigeetool": "0.15.0",
     "async": "^2.1.2",
     "commander": "^2.8.1",
     "easy-zip": "0.0.4",
@@ -39,7 +39,7 @@
     "lodash.omit": "4.5.0",
     "mkdirp": "0.5.1",
     "stream-from-array": "1.0.0",
-    "swagger-parser": "8.0.0",
+    "swagger-parser": "10.0.0",
     "xmlbuilder": "8.2.2"
   },
   "devDependencies": {
