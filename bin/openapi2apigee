@@ -25,6 +25,7 @@ program
   .option('-n, --netrc', 'Use credentials in $HOME/.netrc (required)')
   .option('-u, --username <username>', 'Apigee Edge Username to Deploy')
   .option('-p, --password <password>', 'Apigee Edge Password to Deploy')
+  .option('-t, --token <token>', 'Apigee Edge Auth Token to Deploy')
 
   .description('Generates Apigee API Bundle')
   .action(function(apiProxy, options) {
