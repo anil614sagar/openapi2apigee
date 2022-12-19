@@ -1,6 +1,8 @@
 openapi-apigee-node-utility
 ===========================
 
+# This repo is migrated to https://github.com/apigee/openapi2apigee
+
 [![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
